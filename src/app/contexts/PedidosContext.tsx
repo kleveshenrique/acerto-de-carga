@@ -165,28 +165,28 @@
 // }
 
 // export function PedidoProvider({ children }: { children: ReactNode }) {
-// const pedidos = getData()
-// const [data, setData] = useState<Pedido[]>(pedidos)
-// const pending = data.filter((item) => item.status === 'pending')
-// const success = data.filter((item) => item.status === 'success')
-// const [dataPending, setDataPeding] = useState<Pedido[]>(pending)
-// const [dataSuccess, setDataSuccess] = useState<Pedido[]>(success)
-// function updateStatusPedido(pedido: Pedido) {
-//   let ped = null
-//   if (pedido.status === 'pending') {
-//     ped = { ...pedido, status: 'success' }
-//   } else {
-//     ped = { ...pedido, status: 'pending' }
+//   const pedidos = getData()
+//   const [data, setData] = useState<Pedido[]>(pedidos)
+//   const pending = data.filter((item) => item.status === 'pending')
+//   const success = data.filter((item) => item.status === 'success')
+//   const [dataPending, setDataPeding] = useState<Pedido[]>(pending)
+//   const [dataSuccess, setDataSuccess] = useState<Pedido[]>(success)
+//   function updateStatusPedido(pedido: Pedido) {
+//     let ped = null
+//     if (pedido.status === 'pending') {
+//       ped = { ...pedido, status: 'success' }
+//     } else {
+//       ped = { ...pedido, status: 'pending' }
+//     }
+//     return ped
 //   }
-//   return ped
-// }
-// return (
-//   <PedidoContext.Provider
-//     value={{ data, dataPending, dataSuccess, updateStatusPedido }}
-//   >
-//     {children}
-//   </PedidoContext.Provider>
-// )
+//   return (
+//     <PedidoContext.Provider
+//       value={{ data, dataPending, dataSuccess, updateStatusPedido }}
+//     >
+//       {children}
+//     </PedidoContext.Provider>
+//   )
 // }
 
 // export const usePedido = () => useContext(PedidoContext)

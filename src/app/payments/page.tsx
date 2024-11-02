@@ -345,10 +345,9 @@ export default function Table() {
       accessorKey: 'status',
       header: 'Status',
       cell: ({ row }) => {
-        const { original, getRowProps } = row
+        const { original } = row
         return (
           <Button
-            {...getRowProps}
             className={`${row.original.status === 'pending' ? 'bg-red-600 hover:bg-red-500 hover:text-green-500' : 'bg-green-600  hover:bg-green-500 hover:text-red-500'}`}
             onClick={() => {
               setData(
@@ -369,11 +368,6 @@ export default function Table() {
 
   return (
     <div className="container mx-auto py-10">
-      {/* {
-        <div>
-          {data.length} - {JSON.stringify(data)}
-        </div>
-      } */}
       <div className="flex  items-center justify-end gap-5 ">
         {arrPay.map((item, i) => (
           <div key={i}>

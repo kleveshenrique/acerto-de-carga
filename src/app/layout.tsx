@@ -3,7 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 
 import Header from './Header/page'
-import { PedidoProvider } from './contexts/PedidosContext'
+
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -19,10 +19,8 @@ export default function RootLayout({
   return (
     <html lang="pt-Br">
       <body className={inter.className}>
-        <PedidoProvider>
-          <Header />
-          {children}
-        </PedidoProvider>
+        <Header />
+        {children}
       </body>
     </html>
   )
