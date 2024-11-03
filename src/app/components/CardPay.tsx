@@ -15,12 +15,14 @@ interface payProps {
 
 export function CardPay(pay: payProps) {
   return (
-    <Card className="w-full h-full">
+    <Card className="w-full h-full px-2">
       <CardContent className="flex flex-col text-center p-0">
-        <CardTitle className="flex-nowrap max-sm:text-xs">
+        <CardTitle className="max-sm:text-xs">
           {pay.fPay} ({pay.count})
         </CardTitle>
-        <CardDescription>R$ {pay.valor},00</CardDescription>
+        <CardDescription className="flex-nowrap max-sm:text-xs">
+          R$ {pay.valor},00
+        </CardDescription>
       </CardContent>
     </Card>
   )
