@@ -15,9 +15,9 @@ interface payProps {
 
 export function CardPay(pay: payProps) {
   return (
-    <Card>
-      <CardContent className="flex flex-col items-center justify-center px-7 py-3 gap-3">
-        <CardTitle>
+    <Card className="w-full h-full">
+      <CardContent className="flex flex-col text-center p-0">
+        <CardTitle className="flex-nowrap max-sm:text-xs">
           {pay.fPay} ({pay.count})
         </CardTitle>
         <CardDescription>R$ {pay.valor},00</CardDescription>
