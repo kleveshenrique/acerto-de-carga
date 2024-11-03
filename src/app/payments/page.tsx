@@ -366,7 +366,7 @@ export default function Table() {
 
   return (
     <div className="w-full">
-      <div className="flex overflow-x-auto">
+      <div className="flex overflow-x-auto mb-2">
         {arrPay.map((item, i) => (
           <div key={i}>
             <CardPay
