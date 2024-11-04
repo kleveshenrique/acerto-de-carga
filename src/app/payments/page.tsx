@@ -168,10 +168,21 @@ type Pay = {
 }
 
 export default function Table() {
-  const [data, setData] = useState<Pedido[]>(getData())
+  const [data, setData] = useState<Pedido[]>([])
   const [pending, setPending] = useState<Pedido[]>([])
   const [checked, setChecked] = useState<Pedido[]>([])
   const [arrPay, setArrPay] = useState<Pay[]>([])
+
+  useEffect(() => {
+    const isDatalocalStorage = localStorage.getItem('data')
+    if (isDatalocalStorage) {
+      setData(JSON.parse(isDatalocalStorage))
+      console.log('isDatalocalStorage', isDatalocalStorage)
+    } else {
+      setData(getData())
+      console.log('getData')
+    }
+  }, [])
 
   useEffect(() => {
     const dataPending = data.filter((item) => item.status === 'pending')
@@ -203,15 +214,14 @@ export default function Table() {
     )
   }, [data])
 
-  function toogleStatusPedido(pedido: Pedido) {
-    let ped = null
-    if (pedido.status === 'pending') {
-      ped = { ...pedido, status: 'checked' }
-    } else {
-      ped = { ...pedido, status: 'pending' }
-    }
-
-    return ped
+  const handleToogleStatusPedido = (id: string) => {
+    const arrData = data.map((item) =>
+      item.idPedido === id
+        ? { ...item, status: item.status === 'pending' ? 'checked' : 'pending' }
+        : item,
+    )
+    setData(arrData)
+    localStorage.setItem('data', JSON.stringify(arrData))
   }
 
   const columns: ColumnDef<Pedido>[] = [
@@ -348,13 +358,7 @@ export default function Table() {
           <Button
             className={`${row.original.status === 'pending' ? 'bg-red-600 hover:bg-red-500 hover:text-green-500' : 'bg-green-600  hover:bg-green-500 hover:text-red-500'}`}
             onClick={() => {
-              setData(
-                data.map((item) =>
-                  item.idPedido === original.idPedido
-                    ? toogleStatusPedido(item)
-                    : item,
-                ),
-              )
+              handleToogleStatusPedido(original.idPedido)
             }}
           >
             {row.original.status === 'pending' ? 'Pendente' : 'Conferido'}
@@ -366,7 +370,7 @@ export default function Table() {
 
   return (
     <div className="w-full">
-      <div className="flex overflow-x-auto mb-2 ">
+      <div className="flex justify-end items-center overflow-x-auto mb-1 ">
         {arrPay.map((item, i) => (
           <div key={i}>
             <CardPay
