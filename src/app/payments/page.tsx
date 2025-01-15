@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button'
 import { ArrowUpDown } from 'lucide-react'
 
 import { CardPay } from '@/app/components/CardPay'
+import NumberFormat from '../utils/NumberFormat'
 
 function getData(): Pedido[] {
   // Fetch data from your API here.
@@ -20,7 +21,7 @@ function getData(): Pedido[] {
       nf: '2020',
       codigo: '12354',
       cliente: 'KLEVES HENRIQUE AGUIAR',
-      valor: 1250,
+      valor: 1250.35,
       pagamento: 'BOLETO',
       vencimento: '13/08/2024',
       emissao: '13/07/2024',
@@ -69,7 +70,7 @@ function getData(): Pedido[] {
       codigo: '12354',
       cliente: 'KLEVES HENRIQUE AGUIAR',
       valor: 1250,
-      pagamento: 'TRANSFERENCIA',
+      pagamento: 'BOLETO',
       vencimento: '13/08/2024',
       emissao: '13/07/2024',
       status: 'pending',
@@ -81,83 +82,83 @@ function getData(): Pedido[] {
       codigo: '123',
       cliente: 'F M FREITAS',
       valor: 2250,
-      pagamento: 'CHEQUE',
+      pagamento: 'PROMISSORIA',
       vencimento: '01/08/2024',
       emissao: '01/07/2024',
       status: 'pending',
     },
-    {
-      idPedido: '7',
-      pedido: '8549',
-      nf: '3255',
-      codigo: '123',
-      cliente: 'DEUSELI PEREIRA',
-      valor: 3350,
-      pagamento: 'PROMISSORIA2',
-      vencimento: '01/08/2024',
-      emissao: '01/07/2024',
-      status: 'pending',
-    },
-    {
-      idPedido: '8',
-      pedido: '3025',
-      nf: '5555',
-      codigo: '1234',
-      cliente: 'A S C BRANCO',
-      valor: 2250,
-      pagamento: 'BOLETO1',
-      vencimento: '05/08/2024',
-      emissao: '01/07/2024',
-      status: 'pending',
-    },
-    {
-      idPedido: '9',
-      pedido: '7536',
-      nf: '2222',
-      codigo: '12354',
-      cliente: 'KLEVES HENRIQUE AGUIAR',
-      valor: 1250,
-      pagamento: 'BOLETO4',
-      vencimento: '13/08/2024',
-      emissao: '13/07/2024',
-      status: 'pending',
-    },
-    {
-      idPedido: '10',
-      pedido: '7978',
-      nf: '2255',
-      codigo: '123',
-      cliente: 'F M FREITAS',
-      valor: 2250,
-      pagamento: 'PROMISSORIA3',
-      vencimento: '01/08/2024',
-      emissao: '01/07/2024',
-      status: 'pending',
-    },
-    {
-      idPedido: '11',
-      pedido: '97685',
-      nf: '3255',
-      codigo: '123',
-      cliente: 'DEUSELI PEREIRA',
-      valor: 3350,
-      pagamento: 'PROMISSORIA4',
-      vencimento: '01/08/2024',
-      emissao: '01/07/2024',
-      status: 'pending',
-    },
-    {
-      idPedido: '12',
-      pedido: '47985',
-      nf: '5555',
-      codigo: '1234',
-      cliente: 'A S C BRANCO',
-      valor: 2250,
-      pagamento: 'BOLETO5',
-      vencimento: '05/08/2024',
-      emissao: '01/07/2024',
-      status: 'pending',
-    },
+    // {
+    //   idPedido: '7',
+    //   pedido: '8549',
+    //   nf: '3255',
+    //   codigo: '123',
+    //   cliente: 'DEUSELI PEREIRA',
+    //   valor: 3350,
+    //   pagamento: 'BOLETO',
+    //   vencimento: '01/08/2024',
+    //   emissao: '01/07/2024',
+    //   status: 'pending',
+    // },
+    // {
+    //   idPedido: '8',
+    //   pedido: '3025',
+    //   nf: '5555',
+    //   codigo: '1234',
+    //   cliente: 'A S C BRANCO',
+    //   valor: 2250,
+    //   pagamento: 'BOLETO',
+    //   vencimento: '05/08/2024',
+    //   emissao: '01/07/2024',
+    //   status: 'pending',
+    // },
+    // {
+    //   idPedido: '9',
+    //   pedido: '7536',
+    //   nf: '2222',
+    //   codigo: '12354',
+    //   cliente: 'KLEVES HENRIQUE AGUIAR',
+    //   valor: 1250,
+    //   pagamento: 'BOLETO',
+    //   vencimento: '13/08/2024',
+    //   emissao: '13/07/2024',
+    //   status: 'pending',
+    // },
+    // {
+    //   idPedido: '10',
+    //   pedido: '7978',
+    //   nf: '2255',
+    //   codigo: '123',
+    //   cliente: 'F M FREITAS',
+    //   valor: 2250,
+    //   pagamento: 'BOLETO',
+    //   vencimento: '01/08/2024',
+    //   emissao: '01/07/2024',
+    //   status: 'pending',
+    // },
+    // {
+    //   idPedido: '11',
+    //   pedido: '97685',
+    //   nf: '3255',
+    //   codigo: '123',
+    //   cliente: 'DEUSELI PEREIRA',
+    //   valor: 3350,
+    //   pagamento: 'PROMISSORIA',
+    //   vencimento: '01/08/2024',
+    //   emissao: '01/07/2024',
+    //   status: 'pending',
+    // },
+    // {
+    //   idPedido: '12',
+    //   pedido: '47985',
+    //   nf: '5555',
+    //   codigo: '1234',
+    //   cliente: 'A S C BRANCO',
+    //   valor: 2250,
+    //   pagamento: 'BOLETO',
+    //   vencimento: '05/08/2024',
+    //   emissao: '01/07/2024',
+    //   status: 'pending',
+    // },
   ]
 }
 
@@ -177,10 +178,9 @@ export default function Table() {
     const isDatalocalStorage = localStorage.getItem('data')
     if (isDatalocalStorage) {
       setData(JSON.parse(isDatalocalStorage))
-      console.log('isDatalocalStorage', isDatalocalStorage)
+      // console.log('isDatalocalStorage', isDatalocalStorage)
     } else {
       setData(getData())
-      console.log('getData')
     }
   }, [])
 
@@ -299,12 +299,11 @@ export default function Table() {
       header: () => <div className="text-center">Valor</div>,
       cell: ({ row }) => {
         const valor = parseFloat(row.getValue('valor'))
-        const formatted = new Intl.NumberFormat('pt-BR', {
-          style: 'currency',
-          currency: 'BRL',
-        }).format(valor)
-
-        return <div className="text-center font-medium">{formatted}</div>
+        return (
+          <div className="text-center font-medium">
+            <NumberFormat value={valor} />
+          </div>
+        )
       },
     },
     {
@@ -370,7 +369,7 @@ export default function Table() {
 
   return (
     <div className="w-full">
-      <div className="flex overflow-x-auto mb-1 ">
+      <div className="flex overflow-x-auto mb-1 justify-end gap-1 px-1 my-1">
         {arrPay.map((item, i) => (
           <div key={i}>
             <CardPay
@@ -382,7 +381,7 @@ export default function Table() {
         ))}
       </div>
 
-      <Tabs defaultValue="pendentes" className="w-full">
+      <Tabs defaultValue="pendentes" className="w-full px-1">
         <TabsList>
           <TabsTrigger value="pendentes">Pendentes</TabsTrigger>
           <TabsTrigger value="conferidos">Conferidos</TabsTrigger>

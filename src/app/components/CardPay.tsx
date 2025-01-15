@@ -6,6 +6,7 @@ import {
   CardDescription,
   CardTitle,
 } from '@/components/ui/card'
+import NumberFormat from '../utils/NumberFormat'
 
 interface payProps {
   fPay: string
@@ -20,8 +21,8 @@ export function CardPay(pay: payProps) {
         <CardTitle className="flex flex-nowrap justify-center text-sm max-md:text-xs">
           {pay.fPay}({pay.count})
         </CardTitle>
-        <CardDescription className="flex-nowrap justify-center max-md:text-xs">
-          R${pay.valor},00
+        <CardDescription className="flex-nowrap justify-center max-md:text-xs font-bold">
+          <NumberFormat value={pay.valor} />
         </CardDescription>
       </CardContent>
     </Card>

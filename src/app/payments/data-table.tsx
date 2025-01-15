@@ -33,10 +33,11 @@ import {
   TableRow,
 } from '@/components/ui/table'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
+import { Pedido } from './columns'
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
-  data: TData[]
+  data: Array<TData & Pedido>
 }
 
 export function DataTable<TData, TValue>({
@@ -154,9 +155,13 @@ export function DataTable<TData, TValue>({
                   colSpan={columns.length}
                   className="h-24 text-center"
                 >
-                  {data.length === 0
-                    ? 'Carga sem pedidos'
-                    : 'Ainda Existe Pedidos para analizar'}
+                  {data.length === 0 ? (
+                    <Button className="bg-green-700 font-bold text-sm">
+                      Fechar Carga
+                    </Button>
+                  ) : (
+                    'Ainda Existe Pedidos para analizar'
+                  )}
                 </TableCell>
               </TableRow>
             )}
@@ -164,8 +169,10 @@ export function DataTable<TData, TValue>({
         </Table>
       </div>
       <div className="flex-1 text-sm text-muted-foreground">
-        {table.getFilteredSelectedRowModel().rows.length} of{' '}
-        {table.getFilteredRowModel().rows.length} row(s) selected.
+        {data.some((item) => item.status === 'pending') &&
+          (table.getFilteredRowModel().rows.length > 1
+            ? table.getFilteredRowModel().rows.length + '  registros pendentes'
+            : table.getFilteredRowModel().rows.length + '  registro pendente ')}
       </div>
 
       <div className="flex items-center justify-end space-x-2 py-4">
